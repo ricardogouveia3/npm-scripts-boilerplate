@@ -4,15 +4,19 @@
   "description": "Boilerplate for simple NPM scripts projects using Pug and Sass",
   "main": "index.js",
   "scripts": {
-    "dev": "",
+    "dev": "npm-run-all -p dev:*",
     "dev:markup": "pug --pretty -o build/ pug/*.pug",
-    "dev:style": "",
+    "dev:style": "npm-run-all -s dev-style:*",
+    "dev-style:sass": "node-sass assets/sass/*.sass -o build/assets/css/",
+    "dev-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -d build/assets/css",
     "dev:js": "",
     "watch": "",
     "start": "",
-    "build": "",
+    "build": "npm-run-all -p build:*",
     "build:markup": "pug --output-style compressed -o build/ pug/*.pug",
-    "build:style": "",
+    "build:style": "npm-run-all -s build-style:*",
+    "build-style:sass": "node-sass --output-style compressed assets/sass/*.sass -o build/assets/css/",
+    "build-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -d build/assets/css",
     "build:js": "",
     "build:images": ""
   },
@@ -32,7 +36,12 @@
   },
   "homepage": "https://github.com/ricardogouveia3/npm-scripts-boilerplate#readme",
   "devDependencies": {
+    "autoprefixer": "^9.3.1",
+    "node-sass": "^4.10.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.0.1",
     "pug": "^2.0.3",
     "pug-cli": "^1.0.0-alpha6"
-  }
+  },
+  "browserslist": "last 5 versions"
 }
