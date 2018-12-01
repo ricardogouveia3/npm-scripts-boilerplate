@@ -1,0 +1,43 @@
+doctype html
+html(lang='pt-br')
+head
+  meta(charset='utf-8')
+  meta(itemprop='name', content='')
+  meta(name='description', itemprop='description', content='')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(name='format-detection', content='telephone=no')
+  meta(name='theme-color', content='')
+
+  //- Title
+  //- ===================================
+  title
+
+  //- Favicon and SVG logo
+  //- ===================================
+  link(rel='shortcut icon', href='')
+  link(rel='logo', type='image/svg', href='')
+
+  //- Stylesheet and fonts are placed after body for performance reasons
+  //- Scripts are places at the end of body for performance reasons
+
+  include includes/social_meta.pug
+
+  //- Google Site Verification
+  //- ===================================
+  meta(name="google-site-verification", content="")
+
+  //- Canonical SEO for no http/https duplication
+  //- ===================================
+  link(rel="canonical", href="")
+
+body
+  h1 Welcome to NPM-Scripts-Boilerplate
+
+  //- Scripts
+  //- ===================================
+  script(src='build/js/index.min.js')
+
+//- Stylesheet and fonts
+//- ===================================
+link(rel='stylesheet', href='build/assets/css/normalize.min.css')
+link(rel='stylesheet', href='build/assets/css/style.min.css')

@@ -1,0 +1,38 @@
+{
+  "name": "npm-scripts-boilerplate",
+  "version": "0.1.0",
+  "description": "Boilerplate for simple NPM scripts projects using Pug and Sass",
+  "main": "index.js",
+  "scripts": {
+    "dev": "",
+    "dev:markup": "pug --pretty -o build/ pug/*.pug",
+    "dev:style": "",
+    "dev:js": "",
+    "watch": "",
+    "start": "",
+    "build": "",
+    "build:markup": "pug --output-style compressed -o build/ pug/*.pug",
+    "build:style": "",
+    "build:js": "",
+    "build:images": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardogouveia3/npm-scripts-boilerplate.git"
+  },
+  "keywords": [
+    "npm-scripts",
+    "sass",
+    "pug"
+  ],
+  "author": "Ricardo Gouveia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricardogouveia3/npm-scripts-boilerplate/issues"
+  },
+  "homepage": "https://github.com/ricardogouveia3/npm-scripts-boilerplate#readme",
+  "devDependencies": {
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}
