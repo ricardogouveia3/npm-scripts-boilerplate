@@ -35,7 +35,6 @@ After that, you should be good to go :)
 │   │   ├── partials/
 │   │   │   └── _*.sass
 │   │   └── style.sass
-│   │   └── variables.sass
 │   └── img/
 │       └── *.{jpg||png||svg}
 ├── build/
@@ -53,8 +52,10 @@ After that, you should be good to go :)
 ├── pug/
 │   └── *.pug
 ├── .editorconfig
+├── .eslintrc
 ├── .gitignore
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
 
@@ -64,31 +65,42 @@ After that, you should be good to go :)
 
 These tasks are used for live reloading and debugging. They are time-saving focused. Don't use then for deploying.
 
-- `gulp pugDev`: Compiles `pug/*.pug` into expanded `build/*.html` files. They are acessible by the name of the file, eg: `https://localhost:3000/page` for a `page.pug` file.
-- `gulp sassDev`: Compiles `style.sass` and its dependencies (`assets/sass/**/*.sass`); concat result to `build/css/style.min.css` (expanded style in this step).
-- `gulp jsDev`: Concat `js/*.js` into `build/js/index.min.js`.
+- `npm run dev`: run all dev:* tasks on parallel.
 
-- `gulp dev`: calls all Dev tasks
+- `npm run dev:markup`: Compiles pug files into build/ with pretty sintax.
+- `npm run dev:style`: run all dev-style:* on sequntial.
+- `npm run dev-style:sass`: compiles sass into build/assets/css/ with pretty sintax.
+- `npm run dev-style:autoprefixer`: autoprefixies resulting css file in build/assets/css.
+- `npm run dev-style:rename`: renames resulting css file in build/assets/css.
+- `npm run dev:js`: run dev-js:babel.
+- `npm run dev-js:babel`: transpile files in js/ to index.min.js inside build/js/ (presets=es2015).
 
 #### Build Tasks
 
-These tasks are used for building and deploying. They are performance and good practices focused. They may be too slow for live reloading (or may cause infinite looping tasks).
+- `build`: run all build:* tasks on parallel.
 
-- `gulp pugBuild`: Compiles `pug/index.pug` into `index.html` on root directory.
-- `gulp sassBuild`: Compiles `assets/sass/style.sass` and its dependencies; autoprefix resulting css; concat result to `build/css/style.min.css`.
-- `gulp jsBuild`: Concat `js/*.js` into `build/js/index.min.js`.
-- `gulp imageBuild`: Optimize images (jpg, png, svg) from `assets/img` into `build/assets/img`.
-
-- `gulp build`: Calls all Build tasks.
+- `build:markup`: Compiles pug files into build/ with compressed sintax.
+- `build:style`: run all build-style:* on sequntial.
+- `build-style:sass`: compiles sass into build/assets/css/ with compressed sintax.
+- `build-style:autoprefixer`: autoprefixies resulting css file in build/assets/css.
+- `build-style:rename`: renames resulting css file in build/assets/css.
+- `build:js`: run dev-js:babel.
+- `build-js:babel`: transpile files in js/ to index.min.js inside build/js/ (presets=es2015).
+- `build:images`: optimize images from assets/img to build/assets/img.
 
 #### Server/Live Tasks
 
-- `gulp watch`: Starts browsersync. Watch for chances in `.pug`, `.sass` and `.js` files. Calls dev tasks individually.
-- `gulp browsersync`: Calls browsersync. Server `/` is `build/`.
+- `start`: runs watch and browsersync on parallel
+
+- `watch`: run all watch:* tasks on parallel.
+- `watch:markup`: watch for changes on pug files. exec `dev:markup`.
+- `watch:style`: watch for changes on sass files. exec `dev:style`
+- `watch:js`: watch for changes on js files. exec `dev:js`
+- `browsersync`: start server on build/ and watch all files inside
 
 #### Default tasks
 
-- `gulp`: Calls watch. Used for dev stages.
+- `start`: runs watch and browsersync on parallel
 
 ## License
 
