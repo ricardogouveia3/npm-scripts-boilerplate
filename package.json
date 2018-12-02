@@ -10,9 +10,8 @@
     "dev-style:sass": "node-sass assets/sass/*.sass -o build/assets/css/",
     "dev-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -r",
     "dev-style:rename": "rename -f build/assets/css/style.css style.min.css",
-    "dev:js": "npm run dev-js:babel && npm run dev-js:rename",
-    "dev-js:babel": "babel js/ --out-dir build/js --presets=es2015",
-    "dev-js:rename": "rename -f build/js/index.js index.min.js",
+    "dev:js": "npm run dev-js:babel",
+    "dev-js:babel": "babel js/ --out-file build/js/index.min.js --presets=es2015",
     "watch": "npm-run-all -p watch:*",
     "watch:markup": "onchange 'pug/**/*.pug' -- npm run dev:markup",
     "watch:style": "onchange 'assets/sass/**/*.sass' -- npm run dev:style",
@@ -25,9 +24,8 @@
     "build-style:sass": "node-sass --output-style compressed assets/sass/*.sass -o build/assets/css/",
     "build-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -r",
     "build-style:rename": "rename -f build/assets/css/style.css style.min.css",
-    "build:js": "npm run build-js:babel && npm run build-js:rename",
-    "build-js:babel": "babel js/ --out-dir build/js --presets=es2015",
-    "build-js:rename": "rename -f build/js/index.js index.min.js",
+    "build:js": "npm run build-js:babel",
+    "build-js:babel": "babel js/ --out-file build/js/index.min.js --presets=es2015",
     "build:images": ""
   },
   "repository": {
