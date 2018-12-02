@@ -6,18 +6,28 @@
   "scripts": {
     "dev": "npm-run-all -p dev:*",
     "dev:markup": "pug --pretty -o build/ pug/*.pug",
-    "dev:style": "npm-run-all -s dev-style:*",
+    "dev:style": "npm run dev-style:sass && npm run dev-style:autoprefixer && npm run dev-style:rename",
     "dev-style:sass": "node-sass assets/sass/*.sass -o build/assets/css/",
-    "dev-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -d build/assets/css",
-    "dev:js": "",
-    "watch": "",
-    "start": "",
+    "dev-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -r",
+    "dev-style:rename": "rename -f build/assets/css/style.css style.min.css",
+    "dev:js": "npm run dev-js:babel && npm run dev-js:rename",
+    "dev-js:babel": "babel js/ --out-dir build/js --presets=es2015",
+    "dev-js:rename": "rename -f build/js/index.js index.min.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:markup": "onchange 'pug/**/*.pug' -- npm run dev:markup",
+    "watch:style": "onchange 'assets/sass/**/*.sass' -- npm run dev:style",
+    "watch:js": "onchange 'js/**/*.js' -- npm run dev:js",
+    "start": "npm run watch & npm run browsersync",
+    "browsersync": "browser-sync start --server 'build/' --files 'build/**/*' ",
     "build": "npm-run-all -p build:*",
     "build:markup": "pug --output-style compressed -o build/ pug/*.pug",
     "build:style": "npm-run-all -s build-style:*",
     "build-style:sass": "node-sass --output-style compressed assets/sass/*.sass -o build/assets/css/",
-    "build-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -d build/assets/css",
-    "build:js": "",
+    "build-style:autoprefixer": "postcss build/assets/css/style.css --use autoprefixer -r",
+    "build-style:rename": "rename -f build/assets/css/style.css style.min.css",
+    "build:js": "npm run build-js:babel && npm run build-js:rename",
+    "build-js:babel": "babel js/ --out-dir build/js --presets=es2015",
+    "build-js:rename": "rename -f build/js/index.js index.min.js",
     "build:images": ""
   },
   "repository": {
@@ -37,11 +47,19 @@
   "homepage": "https://github.com/ricardogouveia3/npm-scripts-boilerplate#readme",
   "devDependencies": {
     "autoprefixer": "^9.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.26.3",
     "node-sass": "^4.10.0",
     "npm-run-all": "^4.1.5",
+    "onchange": "^5.1.3",
     "postcss-cli": "^6.0.1",
     "pug": "^2.0.3",
-    "pug-cli": "^1.0.0-alpha6"
+    "pug-cli": "^1.0.0-alpha6",
+    "rename-cli": "^5.1.2"
   },
-  "browserslist": "last 5 versions"
+  "browserslist": "last 5 versions",
+  "dependencies": {
+    "npm": "^6.4.1"
+  }
 }
